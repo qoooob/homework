@@ -43,56 +43,57 @@ end
 
 class Station
 
-	attr_reader :station_name :list_of_trains
+	attr_reader :name :list_of_trains
 
-	def initialize(station_name)
-	  @station_name	= station_name
+	def initialize(name)
+	  @name	= name
 	  @list_of_trains = []
 	end
 
 	def arrival(train)
-	  @list_of_trains << train if @speed == 0
+	  @list_of_trains << train
+	  @speed = 0
 	end
 	
 	def departure(train)
 	  if @list_of_trains.include?(train)
 	    @list_of_trains.delete(train)
+	    @speed = 10
 	  else
-	  puts "Поезда под № #{train_nuber} нет на станции"
+	  puts "Поезда под № #{train_number} нет на станции"
 	  end
 	end
 
 	def trains_type (type)
 	  @list_of_trains.each do |train|
-	  puts train.train_number if train.train_number == type
+	  puts train.number if train.number == type
 	end
 end
 
 class Route
 
-	attr_accessor :station_list :station_route
+	attr_reader :station_a :station_b :station_list :station_route
 
 	def initialize(station_a, station_b)
 	  @station_a = station_a
 	  @lstation_b = station_b
 	  @station_list = []
-	  @station_route = [@station_a, @station_list, @lstation_b]
+	  @station_route = [@station_a, @station_list, @station_b].flatten
 	end
 	
 	def add_station (station)
 	  self.station_list << station
-	  self.station_route = [@station_a, @station_list, @lstation_b]
+	  self.station_route = [@station_a, @station_list, @lstation_b].flatten
 	end
 
 	def delete_station (station)
 	  self.station_list.delete(station)
-	  self.station_route = [@station_a, @station_list, @lstation_b]
+	  self.station_route = [@station_a, @station_list, @lstation_b].flatten
 	end
 
 	def show_stations
 	  self.station_route.each do |station|
 	  puts station.station_name
 	  end
-	end
-	
+	end	
 end
