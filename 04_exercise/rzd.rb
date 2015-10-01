@@ -51,18 +51,26 @@ class Station
 
 	# прибытие поезда
 	def arrival(train)
+	  if @list_of_trains.include?(train)
+	    puts "Поезд #{train_nuber} уже стоит на станции"
+	  else
 	  @list_of_trains << train
+	  end
 	end
 	
 	# отбытие поезда
 	def departure(train)
-	  @list_of_trains.delete(train)
+	  if @list_of_trains.include?(train)
+	    @list_of_trains.delete(train)
+	  else
+	  puts "Такого поезда #{train_nuber} нет на станции"
+	  end
 	end
 
 	# список поездов на станции
 	def trains_type (type)
-		@list_of_trains.each do |i|
-			puts i.train_number if i.train_number == type
+	  @list_of_trains.each do |i|
+	  puts i.train_number if i.train_number == type
 	end
 end
 
