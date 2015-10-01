@@ -63,7 +63,7 @@ class Station
 	  if @list_of_trains.include?(train)
 	    @list_of_trains.delete(train)
 	  else
-	  puts "Такого поезда #{train_nuber} нет на станции"
+	  puts "Поезда под № #{train_nuber} нет на станции"
 	  end
 	end
 
