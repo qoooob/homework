@@ -5,13 +5,12 @@ class Train
   attr_accessor :wagon_amount :speed
 
   def initialize(train_number, train_type, wagon_amount)
-  	@train_number = train_number 		# номер поезда
-  	@train_type = train_type.to_s     #тип поезда
-  	@wagon_amount = wagon_amount 	#количество вагонов
-  	@speed = 0 		 			# текущая скорость
+  	@train_number = train_number
+  	@train_type = train_type.to_s
+  	@wagon_amount = wagon_amount
+  	@speed = 0 
   end
 
-  # метод увеличения скорости
   def speed_up
   	if @speed <= 110
   	  @speed += SPEED_CHANGE
@@ -20,7 +19,6 @@ class Train
     end
   end
 
-  # метод уменьшения скорости
   def speed_down
   	if @speed > 0
   		@speed -= SPEED_CHANGE
@@ -29,32 +27,33 @@ class Train
     end
   end
 
-  # метод прицепки вагонов
   def hook
   	@wagon_amount += HOOK_DETACH if @speed == 0
   end
 
-  # метод отцепки вагонов
   def detach
   	@wagon_amount -= HOOK_DETACH if @speed == 0
   end
+  
+  def current_station
+  	puts "Поезд находится на станции #{self.station.station_name}"
+  end
+# методы перемещения поезда пока не осилил
 end
 
 class Station
 
-	attr_reader :list_of_trains
+	attr_reader :station_name :list_of_trains
 
 	def initialize(station_name)
 	  @station_name	= station_name
 	  @list_of_trains = []
 	end
 
-	# прибытие поезда
 	def arrival(train)
 	  @list_of_trains << train if @speed == 0
 	end
 	
-	# отбытие поезда
 	def departure(train)
 	  if @list_of_trains.include?(train)
 	    @list_of_trains.delete(train)
@@ -63,7 +62,6 @@ class Station
 	  end
 	end
 
-	# список поездов на станции
 	def trains_type (type)
 	  @list_of_trains.each do |train|
 	  puts train.train_number if train.train_number == type
@@ -72,11 +70,29 @@ end
 
 class Route
 
-	attr_accessor :station_list
+	attr_accessor :station_list :station_route
 
 	def initialize(station_a, station_b)
 	  @station_a = station_a
 	  @lstation_b = station_b
 	  @station_list = []
+	  @station_route = [@station_a, @station_list, @lstation_b]
 	end
+	
+	def add_station (station)
+	  self.station_list << station
+	  self.station_route = [@station_a, @station_list, @lstation_b]
+	end
+
+	def delete_station (station)
+	  self.station_list.delete(station)
+	  self.station_route = [@station_a, @station_list, @lstation_b]
+	end
+
+	def show_stations
+	  self.station_route.each do |station|
+	  puts station.station_name
+	  end
+	end
+	
 end
