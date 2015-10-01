@@ -42,7 +42,7 @@ end
 
 class Station
 
-	attr_accessor :list_of_trains
+	attr_reader :list_of_trains
 
 	def initialize(station_name)
 	  @station_name	= station_name
@@ -51,11 +51,7 @@ class Station
 
 	# прибытие поезда
 	def arrival(train)
-	  if @list_of_trains.include?(train)
-	    puts "Поезд #{train_nuber} уже стоит на станции"
-	  else
-	  @list_of_trains << train
-	  end
+	  @list_of_trains << train if @speed == 0
 	end
 	
 	# отбытие поезда
@@ -69,8 +65,8 @@ class Station
 
 	# список поездов на станции
 	def trains_type (type)
-	  @list_of_trains.each do |i|
-	  puts i.train_number if i.train_number == type
+	  @list_of_trains.each do |train|
+	  puts train.train_number if train.train_number == type
 	end
 end
 
