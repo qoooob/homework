@@ -7,6 +7,6 @@ class CargoTrain < Train
   end
   
   def hook(wagon)
-  	super if wagon.class == CargoWagon
+  	super(wagon) if wagon.class == CargoWagon
   end
 end
