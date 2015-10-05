@@ -69,8 +69,8 @@ class Train
   def hook(wagon)
     if @speed == 0
         @wagon_list << wagon
-        wagon_number = @wagon_list.length
-        print "В составе #{@wagon_list.length} вагонов."
+        wagon_number = @wagon_list.size
+        print "В составе #{@wagon_list.size} вагонов."
     else
       print "Сначала остановите поезд!"
     end
@@ -79,7 +79,7 @@ class Train
   def detach(wagon)
     if @speed == 0 && @wagon_list.empty? == false
       @wagons = @wagon_list.delete_if {|i| i == wagon} 
-      print "В составе #{@wagon_list.length} вагонов."
+      print "В составе #{@wagon_list.size} вагонов."
     elsif @speed != 0
         print "Сначала остановите поезд!"
     elsif @wagon_list.empty? == true
