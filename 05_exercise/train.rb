@@ -6,7 +6,6 @@ require_relative 'passengerwagon'
 
 class Train
   SPEED_CHANGE = 10 # ускорение/замедление
-  HOOK_DETACH = 1   # прицепка/отцепка вагона
 
   attr_accessor :train_number, :speed, :route, :current_station, :pre_station, :next_station
   attr_reader :type, :wagon_list
