@@ -1,5 +1,7 @@
 module InstanceCounter
 
+#в разработке
+
 attr_accessor :instances
 
   def self.include
