@@ -1,23 +1,14 @@
 module InstanceCounter
 
-  @@instances = 0
-
   def self.instances
-    @@instances.size
+    @@instances
   end
 
-def initialize
-	@@instances += 1
+  protected
 
-	
-end
-
-private
-
-def register_instance
-
-	
-end
+  def register_instance
+  	@@instances += 1		
+  end
 
 
 end
