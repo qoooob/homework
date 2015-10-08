@@ -1,20 +1,28 @@
-require_relative 'station'
-require_relative 'route'
 require_relative 'wagon'
-require_relative 'cargowagon'
-require_relative 'passengerwagon'
+require_relative 'copyright'
 
 class Train
+  include CopyRight
   SPEED_CHANGE = 10 # ускорение/замедление
 
-  attr_accessor :train_number, :speed, :route, :current_station, :pre_station, :next_station
+  #создаём метод класса, который примет номер поезда 
+  #и возвращает объект поезда по номеру
+
+  @@trains = {}
+
+  def self.find(number)
+    @@trains[number]
+  end
+
+  attr_accessor :number, :speed, :route, :current_station, :pre_station, :next_station
   attr_reader :type, :wagon_list
 
-  def initialize(train_number, type)
-  	@train_number = train_number
+  def initialize(number, type)
+  	@number = number
   	@type = type
   	@speed = 0
     @wagon_list = []
+    @@trains[number] = self
   end
 
   def speed_up
