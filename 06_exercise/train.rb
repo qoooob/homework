@@ -3,10 +3,9 @@ require_relative 'copyright'
 
 class Train
   include CopyRight
+  include InstanceCounter
+  
   SPEED_CHANGE = 10 # ускорение/замедление
-
-  #создаём метод класса, который примет номер поезда 
-  #и возвращает объект поезда по номеру
 
   @@trains = {}
 
