@@ -1,15 +1,14 @@
 module InstanceCounter
-# в разработке
 
-  @@instances = 0
+attr_accessor :instances
 
-  def self.instances
-    @@instances
+  def self.include
+    @@instances = 0	
   end
 
   protected
 
   def register_instance
-  	@@instances += 1		
+  	slef.instances += 1		
   end
 end
