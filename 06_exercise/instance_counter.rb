@@ -1,4 +1,7 @@
 module InstanceCounter
+# в разработке
+
+  @@instances = 0
 
   def self.instances
     @@instances
@@ -9,6 +12,4 @@ module InstanceCounter
   def register_instance
   	@@instances += 1		
   end
-
-
 end
