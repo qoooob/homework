@@ -79,6 +79,7 @@ class Train
     raise ArgumentError, "Number should be at least 6 symbols" if number.length != 6
     raise ArgumentError, "Wrong number format! For example 123A" if number !~ train_number
     raise ArgumentError, "Wrong format. Train type can be: cargo or passenger!" if type != "cargo" && type != "passenger"
+    raise ArgumentError, "Train already exist" if Train.find(number)
   end
 
   def hook(wagon)
